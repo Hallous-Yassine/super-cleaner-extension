@@ -7,7 +7,7 @@ try {
 Logger.log("Background script loaded.");
 
 chrome.runtime.onInstalled.addListener(() => {
-   Logger.log("WebCleaner installed.");
+   Logger.log("SuperCleaner installed.");
 });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

@@ -1,5 +1,5 @@
 /**
- * Storage Manager for WebCleaner
+ * Storage Manager for SuperCleaner
  * Handles saving and retrieving DOM paths, settings, and analytics.
  */
 const StorageManager = {

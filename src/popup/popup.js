@@ -1,5 +1,5 @@
 /**
- * Popup Logic for WebCleaner - Redesigned UI
+ * Popup Logic for SuperCleaner - Redesigned UI
  */
 
 const UI = {

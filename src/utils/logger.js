@@ -3,7 +3,7 @@
  * Provides consistent logging with prefixes and toggleable debug mode.
  */
 const Logger = {
-  prefix: '[WebCleaner] ',
+  prefix: '[SuperCleaner] ',
   debugMode: true, // Set to false in production if needed
 
   log: (...args) => {

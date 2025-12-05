@@ -1,6 +1,6 @@
 {
    "manifest_version": 3,
-   "name": "WebCleaner",
+   "name": "SuperCleaner",
    "version": "1.0",
    "description": "Select and permanently hide elements on any website.",
    "permissions": [

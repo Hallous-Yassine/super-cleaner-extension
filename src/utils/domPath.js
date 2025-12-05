@@ -1,5 +1,5 @@
 /**
- * DOM Path utility for WebCleaner
+ * DOM Path utility for SuperCleaner
  * Generates unique CSS selectors with multiple strategies
  */
 const DomPath = {
