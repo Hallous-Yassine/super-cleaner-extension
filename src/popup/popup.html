@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebCleaner</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon">✏️</span>
+        <h1>WebCleaner</h1>
+      </div>
+      <div class="header-badge">
+        <span id="total-cleaned">0 éléments nettoyés</span>
+      </div>
+    </header>
+
+    <!-- Tabs Navigation -->
+    <nav class="tabs-nav">
+      <button class="tab-btn active" data-tab="current-site">Site actuel</button>
+      <button class="tab-btn" data-tab="all-sites">Tous les sites</button>
+      <button class="tab-btn" data-tab="specs">Spécifications</button>
+    </nav>
+
+    <!-- Tab Content -->
+    <main class="tab-content">
+
+      <!-- Tab 1: Current Site -->
+      <section id="tab-current-site" class="tab-pane active">
+        <h2 class="section-title">Site actuel</h2>
+
+        <div class="site-card">
+          <div class="site-header">
+            <div class="site-info">
+              <span class="site-icon">🌐</span>
+              <span class="site-domain" id="current-domain">example.com</span>
+            </div>
+            <span class="status-badge active" id="status-badge">Actif</span>
+          </div>
+
+          <div class="toggle-row">
+            <span class="toggle-label">Nettoyage activé</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="cleaning-toggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-row">
+            <span class="toggle-label">🛡️ Bloqueur de publicités</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="adblock-toggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="mode-buttons">
+            <button class="btn-mode" id="btn-edit-mode">
+              <span class="btn-icon">✨</span>
+              Mode masquage
+            </button>
+            <button class="btn-mode" id="btn-enlarge-mode">
+              <span class="btn-icon">🔍</span>
+              Mode agrandissement
+            </button>
+          </div>
+
+          <div class="pause-section">
+            <div class="pause-header">
+              <span class="pause-label">⏸️ Pause temporaire</span>
+              <span class="pause-timer" id="pause-timer" style="display: none;"></span>
+            </div>
+            <div class="pause-controls">
+              <button class="pause-btn" data-minutes="5">5 min</button>
+              <button class="pause-btn" data-minutes="15">15 min</button>
+              <button class="pause-btn" data-minutes="30">30 min</button>
+              <button class="pause-btn" data-minutes="60">1h</button>
+            </div>
+            <button class="pause-cancel" id="pause-cancel" style="display: none;">
+              Réactiver maintenant
+            </button>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-item">
+              <span class="stat-icon">🔴</span>
+              <span class="stat-text"><span id="masked-count">0</span> éléments masqués</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-icon">🔍</span>
+              <span class="stat-text"><span id="enlarged-count">0</span> éléments agrandis</span>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="action-btn refresh" id="btn-refresh">
+              <span class="action-icon">🔄</span>
+              <span class="action-text">Actualiser la page</span>
+            </button>
+            <button class="action-btn reset" id="btn-reset">
+              <span class="action-icon">↩️</span>
+              <span class="action-text">Réinitialiser ce site</span>
+            </button>
+          </div>
+        </div>
+
+        <footer class="app-footer">
+          <span>WebCleaner v1.0</span>
+        </footer>
+      </section>
+
+      <!-- Tab 2: All Sites -->
+      <section id="tab-all-sites" class="tab-pane">
+        <div class="section-header">
+          <h2 class="section-title">Tous les sites</h2>
+          <span class="total-badge" id="total-sites-badge">Total: 0</span>
+        </div>
+
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" placeholder="Rechercher un site...">
+          <div class="search-actions">
+            <button class="search-btn">Trier</button>
+            <button class="search-btn">Filtrer</button>
+          </div>
+        </div>
+
+        <div class="sites-list" id="sites-list">
+          <div class="empty-state">
+            <span class="empty-icon">🌐</span>
+            <p class="empty-title">Aucun site modifié pour le moment</p>
+            <p class="empty-subtitle">Personnalisez une page pour qu'elle apparaisse ici.</p>
+          </div>
+        </div>
+
+        <footer class="app-footer">
+          <span>WebCleaner — Tous les sites</span>
+        </footer>
+      </section>
+
+      <!-- Tab 3: Specifications -->
+      <section id="tab-specs" class="tab-pane">
+        <h2 class="section-title">Aperçu général</h2>
+
+        <div class="overview-card">
+          <div class="overview-header">
+            <span class="overview-icon">🌐</span>
+            <span class="overview-domain" id="overview-domain">example.com</span>
+            <span class="overview-status" id="overview-status">Nettoyage activé</span>
+          </div>
+
+          <div class="overview-grid">
+            <div class="overview-item">
+              <span class="overview-label">Mode de nettoyage</span>
+              <span class="overview-value">Personnalisé</span>
+            </div>
+            <div class="overview-item">
+              <span class="overview-label">Éléments masqués</span>
+              <span class="overview-value" id="spec-masked">0</span>
+            </div>
+            <div class="overview-item">
+              <span class="overview-label">Éléments agrandis</span>
+              <span class="overview-value" id="spec-enlarged">0</span>
+            </div>
+            <div class="overview-item">
+              <span class="overview-label">Règles actives</span>
+              <span class="overview-value" id="spec-rules">0</span>
+            </div>
+            <div class="overview-item">
+              <span class="overview-label">État</span>
+              <span class="overview-value">Enregistré</span>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="rules-title">Règles disponibles</h3>
+
+        <div class="rules-list">
+          <div class="rule-item">
+            <span class="rule-icon">🔞</span>
+            <div class="rule-content">
+              <h4 class="rule-title">Mode adulte</h4>
+              <p class="rule-desc">Filtre le contenu sensible ou explicite sur la page.</p>
+            </div>
+            <button class="rule-btn secondary">Activer</button>
+          </div>
+
+          <div class="rule-item">
+            <span class="rule-icon">📚</span>
+            <div class="rule-content">
+              <h4 class="rule-title">Mode éducation</h4>
+              <p class="rule-desc">Simplifie la page pour un contexte d'apprentissage.</p>
+            </div>
+            <button class="rule-btn secondary">Activer</button>
+          </div>
+
+          <div class="rule-item">
+            <span class="rule-icon">🖼️</span>
+            <div class="rule-content">
+              <h4 class="rule-title">Supprimer toutes les images</h4>
+              <p class="rule-desc">Retire les images décoratives et de contenu de la page.</p>
+            </div>
+            <button class="rule-btn secondary">Activer</button>
+          </div>
+
+          <div class="rule-item">
+            <span class="rule-icon">🔗</span>
+            <div class="rule-content">
+              <h4 class="rule-title">Supprimer tous les liens</h4>
+              <p class="rule-desc">Désactive et masque les liens cliquables.</p>
+            </div>
+            <button class="rule-btn secondary">Activer</button>
+          </div>
+
+          <div class="rule-item">
+            <span class="rule-icon">⭐</span>
+            <div class="rule-content">
+              <h4 class="rule-title">Supprimer toutes les icônes</h4>
+              <p class="rule-desc">Nettoie les pictogrammes, logos et petites icônes.</p>
+            </div>
+            <button class="rule-btn secondary">Activer</button>
+          </div>
+
+          <div class="rule-item">
+            <span class="rule-icon">🎬</span>
+            <div class="rule-content">
+              <h4 class="rule-title">Supprimer les vidéos intégrées</h4>
+              <p class="rule-desc">Masque les vidéos, players et contenus auto-lu.</p>
+            </div>
+            <button class="rule-btn secondary">Activer</button>
+          </div>
+        </div>
+
+        <button class="reset-all-btn">
+          Réinitialiser toutes les personnalisations
+        </button>
+
+        <footer class="app-footer">
+          <span>WebCleaner — Spécifications</span>
+        </footer>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="../utils/logger.js"></script>
+  <script src="../utils/messaging.js"></script>
+  <script src="../storage/storageManager.js"></script>
+  <script src="popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+{
+   "manifest_version": 3,
+   "name": "WebCleaner",
+   "version": "1.0",
+   "description": "Select and permanently hide elements on any website.",
+   "permissions": [
+      "storage",
+      "activeTab",
+      "declarativeNetRequest"
+   ],
+   "host_permissions": [
+      "<all_urls>"
+   ],
+   "declarative_net_request": {
+      "rule_resources": [
+         {
+            "id": "adblock_rules",
+            "enabled": true,
+            "path": "rules.json"
+         }
+      ]
+   },
+   "action": {
+      "default_popup": "src/popup/popup.html",
+      "default_icon": {
+         "16": "assets/icon.png",
+         "48": "assets/icon.png",
+         "128": "assets/icon.png"
+      }
+   },
+   "icons": {
+      "16": "assets/icon.png",
+      "48": "assets/icon.png",
+      "128": "assets/icon.png"
+   },
+   "background": {
+      "service_worker": "src/background/background.js"
+   },
+   "content_scripts": [
+      {
+         "matches": [
+            "<all_urls>"
+         ],
+         "js": [
+            "src/utils/logger.js",
+            "src/utils/domPath.js",
+            "src/utils/messaging.js",
+            "src/storage/storageManager.js",
+            "src/data/adultKeywords.js",
+            "src/content/adultModeDetector.js",
+            "src/content/educationModeDetector.js",
+            "src/content/adBlocker.js",
+            "src/content/hider.js",
+            "src/content/highlighter.js",
+            "src/content/selector.js",
+            "src/content/enlarger.js",
+            "src/content/presetRules.js"
+         ],
+         "css": [
+            "src/content/content.css"
+         ],
+         "run_at": "document_start",
+         "all_frames": true
+      }
+   ]
+}

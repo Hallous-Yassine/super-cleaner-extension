@@ -1,0 +1,92 @@
+/* WebCleaner Content Styles */
+
+/* Highlighter style for Edit Mode */
+.webcleaner-highlight {
+   outline: 2px solid #3b82f6 !important;
+   outline-offset: -2px !important;
+   cursor: crosshair !important;
+   background-color: rgba(59, 130, 246, 0.1) !important;
+   transition: all 0.1s ease !important;
+}
+
+/* Force crosshair on highlighted elements and their children (overrides ads, links, etc.) */
+.webcleaner-highlight,
+.webcleaner-highlight * {
+   cursor: crosshair !important;
+}
+
+/* Class to hide elements permanently (Blur Effect) */
+.webcleaner-hidden {
+   filter: blur(8px) !important;
+   pointer-events: none !important;
+   user-select: none !important;
+   -webkit-user-select: none !important;
+   -moz-user-select: none !important;
+   -ms-user-select: none !important;
+}
+
+/* Force inline elements to display properly with blur */
+span.webcleaner-hidden,
+a.webcleaner-hidden,
+img.webcleaner-hidden,
+i.webcleaner-hidden,
+b.webcleaner-hidden,
+strong.webcleaner-hidden,
+em.webcleaner-hidden {
+   display: inline-block !important;
+   filter: blur(8px) !important;
+   pointer-events: none !important;
+   user-select: none !important;
+}
+
+/* Preset Rules Classes */
+.webcleaner-preset-hidden {
+   display: none !important;
+   visibility: hidden !important;
+}
+
+.webcleaner-preset-disabled {
+   pointer-events: none !important;
+   opacity: 0.5 !important;
+   cursor: not-allowed !important;
+   text-decoration: line-through !important;
+}
+
+.webcleaner-preset-blurred {
+   filter: blur(20px) !important;
+   pointer-events: none !important;
+   user-select: none !important;
+}
+
+/* Enlarger Mode */
+.webcleaner-enlarge-highlight {
+   outline: 2px solid #10b981 !important;
+   outline-offset: 2px !important;
+   cursor: zoom-in !important;
+   background-color: rgba(16, 185, 129, 0.08) !important;
+   transition: all 0.2s ease !important;
+   box-shadow: 0 0 10px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Enlarged elements - no transform, direct size changes */
+.webcleaner-enlarged {
+   border: 2px solid #10b981 !important;
+   background-color: rgba(16, 185, 129, 0.05) !important;
+   outline: 1px dashed #10b981 !important;
+   outline-offset: 3px !important;
+}
+
+/* Pulsing animation for enlarged elements */
+@keyframes enlarge-glow {
+   0%,
+   100% {
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+   }
+   50% {
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.5);
+   }
+}
+
+.webcleaner-enlarged {
+   animation: enlarge-glow 2s ease-in-out infinite !important;
+}
